@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 70b9b7224dfe3e14085b57b3c44c3f71
+  productGUID: d97efb0013688a247bafc57fc6531478
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Animal Free-Roam
+  productName: CMPM121_Assignment5
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -611,9 +611,9 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 91c97cbf-ed66-45c5-94d9-2210bad93c1f
+  cloudProjectId: 4a31f83e-1351-450a-a9e9-2752494a7132
   framebufferDepthMemorylessMode: 0
-  projectName: Animal Free-Roam
+  projectName: CMPM121_Assignment5 (1)
   organizationId: terry-dubois
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

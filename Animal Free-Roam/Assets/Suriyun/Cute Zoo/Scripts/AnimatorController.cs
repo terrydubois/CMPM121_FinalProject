@@ -30,6 +30,7 @@ namespace Suriyun
                 a.SetFloat(name, value);
             }
         }
+        
         public void SetInt(string parameter = "key,value")
         {
             char[] separator = { ',', ';' };
