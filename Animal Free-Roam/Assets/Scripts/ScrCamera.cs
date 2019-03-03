@@ -6,7 +6,7 @@ namespace Suriyun {
     public class ScrCamera : MonoBehaviour
     {
         
-        static int characterAmount = 3;
+        static int characterAmount = 1;
         public GameObject[] characters = new GameObject[characterAmount];
         private int currentCharacter = 0;
 
