@@ -12,8 +12,8 @@ namespace Suriyun {
 
         void Start()
         {
-            int heightScale = 5;
-            float detailScale = 5.0f;
+            int heightScale = 10;
+            float detailScale = 20.0f;
 
             Mesh mesh = this.GetComponent<MeshFilter>().mesh;
             Vector3[] verts = mesh.vertices;
