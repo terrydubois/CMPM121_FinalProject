@@ -9,7 +9,7 @@ namespace Suriyun {
         public float jumpSpeed;
         private float rot = 0;
         public float rotSpeed = 80;
-        public float gravity = 8;
+        public float gravity = 4;
 
         public bool selected = false;
 
@@ -18,6 +18,8 @@ namespace Suriyun {
         CharacterController controller;
         Animator animator;
         //Animation animation;
+
+        float jumpForce = 0.0f;
 
         void Start()
         {
@@ -29,12 +31,13 @@ namespace Suriyun {
         void Update()
         {
 
-            if (selected && controller.isGrounded && !Input.GetKey(KeyCode.E)) {
+            if (selected && !Input.GetKey(KeyCode.E) && controller.isGrounded) {
                 // walk forward
                 if (Input.GetKey(KeyCode.W)) {
                     animator.SetInteger("animation", 1);
                     moveDir = new Vector3(0, 0, 1);
-                    moveDir *= moveSpeed;
+                    moveDir.z = 1;
+                    moveDir.z *= moveSpeed;
                     
                     // run if player is holding X
                     if (Input.GetKey(KeyCode.LeftShift)) {
@@ -65,9 +68,23 @@ namespace Suriyun {
                     rot += Input.GetAxis("Horizontal") * rotSpeed * runMultiply * Time.deltaTime;
                     transform.eulerAngles = new Vector3(0, rot, 0);
                 }
+
+
+                // jump
+                if (Input.GetKey(KeyCode.Space)) {
+                    moveDir.y = jumpSpeed;
+                    animator.SetInteger("animation", 3);
+                }
+            }
+
+
+            
+            if (controller.isGrounded && animator.GetInteger("animation") == 3 && !Input.GetKey(KeyCode.Space)) {
+                animator.SetInteger("animation", 0);
             }
             
-            if (Input.GetKey(KeyCode.E)) {
+            
+            if (Input.GetKey(KeyCode.E) && controller.isGrounded) {
                 moveDir = Vector3.zero;
                 animator.SetInteger("animation", 4);
             }
