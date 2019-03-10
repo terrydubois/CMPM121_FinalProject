@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class ScrTreePoolCreate : MonoBehaviour
 {
-    static int treeAmount = 300;
-    public GameObject treePrefab;
+    static int treeAmount = 600;
+    public GameObject[] treePrefabs;
     static GameObject[] trees;
     
     void Start()
     {
         trees = new GameObject[treeAmount];
+        int currentPrefab = 0;
         for (int i = 0; i < treeAmount; i++) {
-            trees[i] = (GameObject) Instantiate(treePrefab, Vector3.zero, Quaternion.identity);
+            trees[i] = (GameObject) Instantiate(treePrefabs[currentPrefab], Vector3.zero, Quaternion.identity);
             trees[i].SetActive(false);
+
+            currentPrefab++;
+            if (currentPrefab >= treePrefabs.Length) {
+                currentPrefab = 0;
+            }
         }
     }
 
