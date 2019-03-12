@@ -13,13 +13,13 @@ namespace Suriyun {
 
         public bool selected = false;
 
+        public bool autoRun = false;
+
         Vector3 moveDir = Vector3.zero;
 
         CharacterController controller;
         Animator animator;
         //Animation animation;
-
-        float jumpForce = 0.0f;
 
         void Start()
         {
@@ -30,17 +30,25 @@ namespace Suriyun {
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.X)) {
+                autoRun = !autoRun;
+                if (!autoRun) {
+                    moveDir.x = 0;
+                    moveDir.z = 0;
+                    animator.SetInteger("animation", 0);
+                }
+            }
 
             if (selected && !Input.GetKey(KeyCode.E) && controller.isGrounded) {
                 // walk forward
-                if (Input.GetKey(KeyCode.W)) {
+                if (Input.GetKey(KeyCode.W) || autoRun) {
                     animator.SetInteger("animation", 1);
                     moveDir = new Vector3(0, 0, 1);
                     moveDir.z = 1;
                     moveDir.z *= moveSpeed;
                     
                     // run if player is holding X
-                    if (Input.GetKey(KeyCode.LeftShift)) {
+                    if (Input.GetKey(KeyCode.LeftShift) || autoRun) {
                         moveDir *= 2;
                         animator.SetInteger("animation", 2);
                     }
