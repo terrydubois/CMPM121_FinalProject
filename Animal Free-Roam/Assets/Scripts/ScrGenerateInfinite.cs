@@ -23,8 +23,8 @@ namespace Suriyun {
         public GameObject player;
 
         int planeSize = 10;
-        int halfTilesX = 5;
-        int halfTilesZ = 5;
+        int halfTilesX = 20;
+        int halfTilesZ = 20;
 
         Vector3 startPos;
         Hashtable tiles = new Hashtable();
