@@ -11,6 +11,8 @@ namespace Suriyun {
     {
         List<GameObject> treeList = new List<GameObject>();
 
+        public GameObject[] fruitPrefabs;
+
         void Start()
         {
             int heightScale = 10;
@@ -36,6 +38,29 @@ namespace Suriyun {
                         newTree.transform.position = treePos;
                         newTree.SetActive(true);
                         treeList.Add(newTree);
+
+
+                        // create fruit
+                        if (Random.Range(0, 10) > 8) {
+                            
+                            float plusX = Random.Range(5.0f, 10.0f);
+                            if (Random.Range(0, 10) >= 5) {
+                                plusX = -plusX;
+                            }
+                            float plusZ = Random.Range(5.0f, 10.0f);
+                            if (Random.Range(0, 10) >= 5) {
+                                plusZ = -plusZ;
+                            }
+
+                            Vector3 fruitPos = new Vector3(
+                                treePos.x + plusX,
+                                treePos.y + 10,
+                                treePos.z + plusZ
+                                );
+                            
+                            GameObject fruit = (GameObject) Instantiate(fruitPrefabs[Random.Range(0, 4)], fruitPos, Quaternion.identity);
+                        }
+                        
                     }
                 }
             }

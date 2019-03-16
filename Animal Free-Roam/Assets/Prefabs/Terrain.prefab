@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7436295508938567543}
   - component: {fileID: 7436295508938567542}
   - component: {fileID: 7436295508938567537}
-  - component: {fileID: 7436295508938567541}
+  - component: {fileID: 5589962945242491683}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -93,7 +93,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &7436295508938567541
+--- !u!114 &5589962945242491683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,4 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3738664d75e67084988e307c973c8bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 3}
+  fruitPrefabs:
+  - {fileID: 1000013678658166, guid: 8fa35cdad352cfa4297d3be64705ecf1, type: 3}
+  - {fileID: 1000013571059214, guid: 79b496967591f8244b45eda1d75bd519, type: 3}
+  - {fileID: 1000011961567032, guid: 7dff911492482a2459041d0a1fb156ef, type: 3}
+  - {fileID: 1000013251634520, guid: 18338b7d507b8f74eb2b74cd579a0a78, type: 3}
