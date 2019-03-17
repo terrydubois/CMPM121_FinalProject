@@ -2729,6 +2729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1204339024597804, guid: 9de47d07d513e5143adbc9b24a1eeed0, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4411100498251662, guid: 9de47d07d513e5143adbc9b24a1eeed0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4428,6 +4432,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1134434222}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1797571268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797571263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf29cb8fc253ae46b1948081efba322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 1797571263}
+  fruitAmount: 50
+  fruitPrefabs:
+  - {fileID: 1000013678658166, guid: 8fa35cdad352cfa4297d3be64705ecf1, type: 3}
+  - {fileID: 1000013571059214, guid: 79b496967591f8244b45eda1d75bd519, type: 3}
+  - {fileID: 1000011961567032, guid: 7dff911492482a2459041d0a1fb156ef, type: 3}
+  - {fileID: 1000013251634520, guid: 18338b7d507b8f74eb2b74cd579a0a78, type: 3}
 --- !u!1 &1816589684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1211756940889422, guid: dbb4f63164fde934ca66b89ae15021b1,

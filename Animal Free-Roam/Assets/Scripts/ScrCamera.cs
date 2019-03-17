@@ -29,6 +29,8 @@ namespace Suriyun {
         private const float minDist = 1.0f;
         private const float maxDist = 10.0f;
 
+        private GameObject[] fruitCount;
+
 
         private void Start() {
             camTransform = transform;
@@ -59,6 +61,11 @@ namespace Suriyun {
 
             distance -= Input.GetAxis("Mouse ScrollWheel");
             distance = Mathf.Clamp(distance, minDist, maxDist);
+
+
+
+            fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
+            Debug.Log(fruitCount.Length.ToString());
         }
 
         private void LateUpdate() {

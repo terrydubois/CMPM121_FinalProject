@@ -41,8 +41,8 @@ namespace Suriyun {
 
 
                         // create fruit
-                        if (Random.Range(0, 10) > 8) {
-                            
+                        //if (Random.Range(0, 10) > 8) {
+                            /*
                             float plusX = Random.Range(5.0f, 10.0f);
                             if (Random.Range(0, 10) >= 5) {
                                 plusX = -plusX;
@@ -59,7 +59,8 @@ namespace Suriyun {
                                 );
                             
                             GameObject fruit = (GameObject) Instantiate(fruitPrefabs[Random.Range(0, 4)], fruitPos, Quaternion.identity);
-                        }
+                            */
+                        //}
                         
                     }
                 }
