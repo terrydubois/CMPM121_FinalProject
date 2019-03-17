@@ -9,7 +9,7 @@ public class ScrTimeControl : MonoBehaviour
     [SerializeField] private Light sun;
     [SerializeField] private float secondsInFullDay = 120f;
 
-    [Range(0, 1)] [SerializeField] private float currentTime = 0;
+    [Range(0, 1)] public float currentTime = 0;
     private float timeMulti = 1f;
     private float sunIntensityInit;
 

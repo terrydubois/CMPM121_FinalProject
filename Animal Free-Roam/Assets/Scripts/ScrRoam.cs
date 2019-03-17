@@ -6,6 +6,7 @@ namespace Suriyun {
     public class ScrRoam : MonoBehaviour
     {
         public GameObject playerObj;
+        private GameObject timeObj;
 
         public float moveSpeed;
         private float rot = 0;
@@ -23,6 +24,8 @@ namespace Suriyun {
 
         void Start()
         {
+            timeObj = GameObject.FindGameObjectWithTag("TimeControl");
+
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
 
@@ -92,6 +95,14 @@ namespace Suriyun {
             }
             if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().transform.position) > 70) {
                 newPosition();
+            }
+
+            // sleeping
+            float currentTime = timeObj.GetComponent<ScrTimeControl>().currentTime;
+            if (currentTime < 0.13f || currentTime > 0.93f
+            && transform.position.y < 1.6) {
+                walking = false;
+                animator.SetInteger("animation", 5);
             }
         }
 
