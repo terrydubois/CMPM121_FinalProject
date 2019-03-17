@@ -20,7 +20,6 @@ namespace Suriyun {
 
         CharacterController controller;
         Animator animator;
-        //Animation animation
 
         void Start()
         {

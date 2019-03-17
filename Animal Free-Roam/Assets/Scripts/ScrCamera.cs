@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Suriyun {
     public class ScrCamera : MonoBehaviour
     {
+        public bool introScreen = true;
         
         static int characterAmount = 1;
         public GameObject[] characters = new GameObject[characterAmount];
@@ -54,15 +55,29 @@ namespace Suriyun {
             lookAt = characters[currentCharacter].transform;
 
             
-            currentX += Input.GetAxis("Mouse X") * sensX;
-            currentY += Input.GetAxis("Mouse Y") * -sensY;
+            if (introScreen) {
+                if (Input.GetKeyUp(KeyCode.Space)) {
+                    introScreen = false;
+                }
 
-            currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+                currentX += 0.25f;
+                currentY = 20.0f;
+                distance = maxDist;
+            }
+            else {
+                if (Input.GetKeyUp(KeyCode.Escape)) {
+                    introScreen = true;
+                }
 
-            distance -= Input.GetAxis("Mouse ScrollWheel");
+                currentX += Input.GetAxis("Mouse X") * sensX;
+                currentY += Input.GetAxis("Mouse Y") * -sensY;
+
+                currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+
+                distance -= Input.GetAxis("Mouse ScrollWheel");
+            }
+
             distance = Mathf.Clamp(distance, minDist, maxDist);
-
-
 
             fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
             Debug.Log(fruitCount.Length.ToString());
