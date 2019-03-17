@@ -29,7 +29,7 @@ namespace Suriyun {
         private float sensY = 1.0f;
 
         private const float Y_ANGLE_MIN = 20.0f;
-        private const float Y_ANGLE_MAX = 40.0f;
+        private const float Y_ANGLE_MAX = 60.0f;
         private const float minDist = 1.0f;
         private const float maxDist = 10.0f;
 

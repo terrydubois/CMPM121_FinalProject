@@ -33,12 +33,12 @@ namespace Suriyun {
         {
             if (cameraObj.GetComponent<ScrCamera>().introScreen) {
 
-                //transform.localScale = Vector3.zero;
+                transform.localScale = Vector3.zero;
                 cameraObj.transform.localScale = Vector3.one;
             }
             else {
 
-                //transform.localScale = Vector3.one;
+                transform.localScale = Vector3.one;
                 cameraObj.transform.localScale = Vector3.zero;
 
                 if (Input.GetKeyDown(KeyCode.X)) {

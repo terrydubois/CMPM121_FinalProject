@@ -6,7 +6,6 @@ namespace Suriyun {
     public class ScrRoam : MonoBehaviour
     {
         public GameObject playerObj;
-        private GameObject timeObj;
 
         public float moveSpeed;
         private float rot = 0;
@@ -24,8 +23,6 @@ namespace Suriyun {
 
         void Start()
         {
-            timeObj = GameObject.FindGameObjectWithTag("TimeControl");
-
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
 
@@ -94,6 +91,7 @@ namespace Suriyun {
             if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().position) > 70) {
                 newPosition();
             }
+<<<<<<< HEAD
 
             // sleeping
             /*
@@ -108,6 +106,8 @@ namespace Suriyun {
             
             moveDir.y -= gravity * Time.deltaTime;
             controller.Move(moveDir * Time.deltaTime);
+=======
+>>>>>>> parent of 751e0a0... NPCs Resting
         }
 
         void newPosition()
