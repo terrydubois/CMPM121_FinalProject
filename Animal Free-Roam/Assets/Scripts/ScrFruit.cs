@@ -13,8 +13,17 @@ public class ScrFruit : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, character.transform.position) > 70) {
+        float distToChar = Vector3.Distance(transform.position, character.transform.position);
+
+        if (distToChar > 70) {
             Destroy(gameObject);
         }
+        else if (distToChar < 0.5f) {
+            if (Input.GetKey(KeyCode.E)) {
+                Destroy(gameObject);
+            }
+        }
+
+
     }
 }

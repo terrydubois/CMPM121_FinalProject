@@ -84,8 +84,6 @@ namespace Suriyun {
                 }
             }
 
-            moveDir.y -= gravity * Time.deltaTime;
-            controller.Move(moveDir * Time.deltaTime);
 
             if (transform.position.y < 1.6) {
                 walking = true;
@@ -93,17 +91,23 @@ namespace Suriyun {
             if (transform.position.y < 1) {
                 newPosition();
             }
-            if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().transform.position) > 70) {
+            if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().position) > 70) {
                 newPosition();
             }
 
             // sleeping
+            /*
             float currentTime = timeObj.GetComponent<ScrTimeControl>().currentTime;
             if (currentTime < 0.13f || currentTime > 0.93f
             && transform.position.y < 1.6) {
                 walking = false;
                 animator.SetInteger("animation", 5);
             }
+            */
+
+            
+            moveDir.y -= gravity * Time.deltaTime;
+            controller.Move(moveDir * Time.deltaTime);
         }
 
         void newPosition()
@@ -126,6 +130,7 @@ namespace Suriyun {
                 newZ -= Random.Range(30, 60);
             }
 
+            Debug.Log("newPos");
            
             transform.position = new Vector3(newX, 6.0f, newZ);
             transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace Suriyun {
@@ -11,6 +12,8 @@ namespace Suriyun {
         public GameObject[] characters = new GameObject[characterAmount];
         private int currentCharacter = 0;
         
+        public int score;
+        public Text scoreText;
 
         // Following tutorial: https://www.youtube.com/watch?v=Ta7v27yySKs
 
@@ -36,6 +39,9 @@ namespace Suriyun {
         private void Start() {
             camTransform = transform;
             cam = Camera.main;
+
+            score = 0;
+            setScoreText();
         }
 
         private void Update() {
@@ -79,8 +85,9 @@ namespace Suriyun {
 
             distance = Mathf.Clamp(distance, minDist, maxDist);
 
-            fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
-            Debug.Log(fruitCount.Length.ToString());
+            //fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
+            //Debug.Log(fruitCount.Length.ToString());
+            setScoreText();
         }
 
         private void LateUpdate() {
@@ -88,6 +95,10 @@ namespace Suriyun {
             Quaternion rot = Quaternion.Euler(currentY, currentX, 0);
             camTransform.position = lookAt.position + rot * dir;
             camTransform.LookAt(lookAt.position);
+        }
+
+        void setScoreText() {
+            scoreText.text = "Fruit eaten: " + fruitCount.ToString();
         }
 
     }
