@@ -78,7 +78,7 @@ namespace Suriyun {
                     // rotate if pressing left/right
                     if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
                         float runMultiply = 1;
-                        if (Input.GetKey(KeyCode.LeftShift)) {
+                        if (Input.GetKey(KeyCode.LeftShift) || autoRun) {
                             runMultiply = 1.5f;
                         }
                         else {

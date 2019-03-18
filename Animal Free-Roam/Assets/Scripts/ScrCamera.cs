@@ -33,6 +33,7 @@ namespace Suriyun {
         private const float minDist = 4.0f;
         private const float maxDist = 10.0f;
 
+        private GameObject[] NPCCount;
         private GameObject[] fruitCount;
 
 
@@ -85,8 +86,15 @@ namespace Suriyun {
 
             distance = Mathf.Clamp(distance, minDist, maxDist);
 
-            fruitCount = GameObject.FindGameObjectsWithTag("NPC");
-            Debug.Log("NPCs: " + fruitCount.Length.ToString());
+
+            string debugStr = "";
+            NPCCount = GameObject.FindGameObjectsWithTag("NPC");
+            fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
+
+            debugStr += "NPCs: " + NPCCount.Length.ToString();
+            debugStr += " ...Fruits: " + fruitCount.Length.ToString();
+            Debug.Log(debugStr);
+
             setScoreText();
         }
 
