@@ -29,19 +29,19 @@ public class ScrGenerateNear : MonoBehaviour
 
         Vector3 charPos = character.transform.position;
 
-        float plusX = Random.Range(50.0f, 100.0f);
+        float plusX = Random.Range(120.0f, 180.0f);
         if (Random.Range(0, 10) >= 5) {
             plusX *= -1;
         }
 
-        float plusZ = Random.Range(50.0f, 100.0f);
+        float plusZ = Random.Range(120.0f, 180.0f);
         if (Random.Range(0, 10) >= 5) {
             plusZ *= -1;
         }
 
         Vector3 newPos = new Vector3(
             charPos.x + plusX,
-            charPos.y + 2,
+            3,
             charPos.z + plusZ
         );
 

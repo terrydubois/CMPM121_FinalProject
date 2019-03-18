@@ -730,7 +730,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.14, z: 0}
+  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!114 &336834165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +749,7 @@ MonoBehaviour:
   walking: 1
   eating: 1
   rotatingDir: 0
+  maxDistToChar: 350
 --- !u!1 &1812408515853958
 GameObject:
   m_ObjectHideFlags: 0

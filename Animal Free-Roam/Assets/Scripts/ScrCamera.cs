@@ -30,7 +30,7 @@ namespace Suriyun {
 
         private const float Y_ANGLE_MIN = 20.0f;
         private const float Y_ANGLE_MAX = 60.0f;
-        private const float minDist = 1.0f;
+        private const float minDist = 4.0f;
         private const float maxDist = 10.0f;
 
         private GameObject[] fruitCount;
@@ -86,7 +86,7 @@ namespace Suriyun {
             distance = Mathf.Clamp(distance, minDist, maxDist);
 
             fruitCount = GameObject.FindGameObjectsWithTag("NPC");
-            Debug.Log(fruitCount.Length.ToString());
+            Debug.Log("NPCs: " + fruitCount.Length.ToString());
             setScoreText();
         }
 

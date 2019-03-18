@@ -17,6 +17,11 @@ namespace Suriyun {
         public bool eating = true;
         public int rotatingDir = 0;
 
+        public float maxDistToChar = 450;
+
+        private float scale = 0;
+        private float scaleDest = 6.0f;
+
         Vector3 moveDir = Vector3.zero;
 
         CharacterController controller;
@@ -34,11 +39,19 @@ namespace Suriyun {
             
             InvokeRepeating("ChangeDir", waitTime / 2, waitTime);
             
-            //newPosition();
+            transform.localScale = Vector3.zero;
+            transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
         }
 
         void Update()
         {
+            if (scale < scaleDest) {
+                scale += 0.4f;
+            }
+            else {
+                scale = scaleDest;
+            }
+            transform.localScale = new Vector3(scale, scale, scale);
 
             if (controller.isGrounded) {
                 // walk forward
@@ -94,17 +107,17 @@ namespace Suriyun {
             if (transform.position.y < 1) {
                 Destroy(gameObject);
             }
-            if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().position) > 150) {
+            if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().position) > maxDistToChar) {
                 Destroy(gameObject);
             }
 
             // sleeping
-            
             float currentTime = timeObj.GetComponent<ScrTimeControl>().currentTime;
-            if (currentTime < 0.13f || currentTime > 0.93f
-            && transform.position.y < 1.6) {
-                walking = false;
-                animator.SetInteger("animation", 5);
+            if (currentTime < 0.13f || currentTime > 0.93f) {
+                if (transform.position.y < 1.6) {
+                    walking = false;
+                    animator.SetInteger("animation", 5);
+                }
             }
             
 
