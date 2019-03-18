@@ -5,12 +5,13 @@ using UnityEngine;
 namespace Suriyun {
     public class ScrRoam : MonoBehaviour
     {
-        public GameObject playerObj;
+        private GameObject playerObj;
+        private GameObject timeObj;
 
         public float moveSpeed;
         private float rot = 0;
         public float rotSpeed = 80;
-        public float gravity = 4;
+        public float gravity = 6;
 
         public bool walking = true;
         public bool eating = true;
@@ -23,14 +24,17 @@ namespace Suriyun {
 
         void Start()
         {
+            playerObj = GameObject.FindGameObjectWithTag("Player");
+
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
+            timeObj = GameObject.FindGameObjectWithTag("TimeControl");
 
             float waitTime = Random.Range(2.0f, 10.0f);
             
             InvokeRepeating("ChangeDir", waitTime / 2, waitTime);
             
-            newPosition();
+            //newPosition();
         }
 
         void Update()
@@ -70,6 +74,7 @@ namespace Suriyun {
             
 
             // return to standstill
+            
             if (!walking) {
                 animator.SetInteger("animation", 0);
                 moveDir.x = 0;
@@ -80,34 +85,32 @@ namespace Suriyun {
                     animator.SetInteger("animation", 4);
                 }
             }
+            
 
 
             if (transform.position.y < 1.6) {
                 walking = true;
             }
             if (transform.position.y < 1) {
-                newPosition();
+                Destroy(gameObject);
             }
-            if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().position) > 70) {
-                newPosition();
+            if (Vector3.Distance(transform.position, playerObj.GetComponent<Transform>().position) > 150) {
+                Destroy(gameObject);
             }
-<<<<<<< HEAD
 
             // sleeping
-            /*
+            
             float currentTime = timeObj.GetComponent<ScrTimeControl>().currentTime;
             if (currentTime < 0.13f || currentTime > 0.93f
             && transform.position.y < 1.6) {
                 walking = false;
                 animator.SetInteger("animation", 5);
             }
-            */
+            
 
             
             moveDir.y -= gravity * Time.deltaTime;
             controller.Move(moveDir * Time.deltaTime);
-=======
->>>>>>> parent of 751e0a0... NPCs Resting
         }
 
         void newPosition()
@@ -129,8 +132,6 @@ namespace Suriyun {
             else {
                 newZ -= Random.Range(30, 60);
             }
-
-            Debug.Log("newPos");
            
             transform.position = new Vector3(newX, 6.0f, newZ);
             transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);

@@ -15,7 +15,7 @@ public class ScrFruit : MonoBehaviour
     {
         float distToChar = Vector3.Distance(transform.position, character.transform.position);
 
-        if (distToChar > 70) {
+        if (distToChar > 150) {
             Destroy(gameObject);
         }
         else if (distToChar < 0.5f) {

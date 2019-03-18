@@ -85,8 +85,8 @@ namespace Suriyun {
 
             distance = Mathf.Clamp(distance, minDist, maxDist);
 
-            //fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
-            //Debug.Log(fruitCount.Length.ToString());
+            fruitCount = GameObject.FindGameObjectsWithTag("NPC");
+            Debug.Log(fruitCount.Length.ToString());
             setScoreText();
         }
 
@@ -98,7 +98,7 @@ namespace Suriyun {
         }
 
         void setScoreText() {
-            scoreText.text = "Fruit eaten: " + fruitCount.ToString();
+//            scoreText.text = "Fruit eaten: " + fruitCount.ToString();
         }
 
     }
