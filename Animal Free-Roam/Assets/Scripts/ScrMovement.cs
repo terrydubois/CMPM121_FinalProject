@@ -31,8 +31,14 @@ namespace Suriyun {
 
         void Update()
         {
-            if (!cameraObj.GetComponent<ScrCamera>().introScreen) {
-                
+            if (cameraObj.GetComponent<ScrCamera>().introScreen) {
+                autoRun = false;
+                moveDir.x = 0;
+                moveDir.z = 0;
+                animator.SetInteger("animation", 0);
+            }
+            else {
+
                 if (Input.GetKeyDown(KeyCode.X)) {
                     autoRun = !autoRun;
                     if (!autoRun) {

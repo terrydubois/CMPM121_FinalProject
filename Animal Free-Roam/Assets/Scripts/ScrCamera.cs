@@ -12,6 +12,7 @@ namespace Suriyun {
         public GameObject[] characters = new GameObject[characterAmount];
         private int currentCharacter = 0;
         
+        public int fruitPerSound;
         public int score;
         public Text scoreText;
 
@@ -45,6 +46,11 @@ namespace Suriyun {
         public GameObject pinwheelObj;
         public GameObject pressSpaceObj;
 
+        public GameObject hungerBarBGObj;
+        public GameObject hungerBarObj;
+        private float barProgress;
+        private float hungerBarY;
+
 
         private void Start() {
             camTransform = transform;
@@ -59,6 +65,9 @@ namespace Suriyun {
 
             logoY = 1300;
             pressSpaceY = -600;
+
+            barProgress = 0;
+            hungerBarY = -18;
         }
 
         private void Update() {
@@ -115,6 +124,7 @@ namespace Suriyun {
             setScoreText();
             soundControl();
             showMenu();
+            controlHungerBar();
         }
 
         private void LateUpdate() {
@@ -130,13 +140,40 @@ namespace Suriyun {
 
         void soundControl() {
 
-            int loopMax = Mathf.Clamp(score, 0, tracks.Length);
-            for (int i = 0; i < loopMax; i++) {
-                if (tracks[i].volume < 1.0f) {
-                    tracks[i].volume += 0.02f;
+            for (int i = 1; i < tracks.Length + 1; i++) {
+
+                if (score >= i * fruitPerSound) {
+                    if (tracks[i - 1].volume < 1.0f) {
+                        tracks[i - 1].volume += 0.02f;
+                    }
                 }
-                tracks[i].volume = Mathf.Clamp(tracks[i].volume, 0.0f, 1.0f);
+                tracks[i - 1].volume = Mathf.Clamp(tracks[i - 1].volume, 0.0f, 1.0f);
             }
+        }
+
+        void controlHungerBar() {
+
+            if (Input.GetKeyDown(KeyCode.L)) {
+                score++;
+            }
+
+            float barProgressDest = 0;
+            float scoreAdjust = Mathf.Clamp(score, 0, tracks.Length * fruitPerSound);
+            float trackLenthsFloat = tracks.Length;
+
+            barProgressDest = scoreAdjust / (trackLenthsFloat * fruitPerSound);
+
+            barProgress = approach(barProgress, barProgressDest, 6);
+
+            hungerBarObj.GetComponent<Image>().fillAmount = barProgress;
+
+            float hungerBarYDest = 30;
+            if (introScreen) {
+                hungerBarYDest = -20;
+            }
+            hungerBarY = approach(hungerBarY, hungerBarYDest, 10);
+            RectTransform hungerBarTransform = hungerBarBGObj.GetComponent<RectTransform>();
+            hungerBarTransform.anchoredPosition = new Vector3(0, hungerBarY, 0);
         }
 
         void showMenu() {
