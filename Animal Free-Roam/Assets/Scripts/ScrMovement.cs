@@ -24,6 +24,7 @@ namespace Suriyun {
 
         public AudioSource walkingSound;
         public AudioSource walkingWaterSound;
+        public AudioSource jumpSound;
 
         void Start()
         {
@@ -129,11 +130,11 @@ namespace Suriyun {
             bool playWalkingSound = false;
             if (autoRun || Input.GetKey(KeyCode.W)
             || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S)
-            || Input.GetKey(KeyCode.D)) {
+            || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space)) {
                 if (!cameraObj.GetComponent<ScrCamera>().introScreen) {
-                    if (!Input.GetKey(KeyCode.Space)) {
+                    //if (Input.GetKey(KeyCode.Space)) {
                         playWalkingSound = true;
-                    }
+                    //}
                 }
             }
 
@@ -144,7 +145,12 @@ namespace Suriyun {
                     }    
                 }
                 else {
-                    if (!walkingSound.isPlaying) {
+                    if (Input.GetKey(KeyCode.Space)) {
+                        if (controller.isGrounded && !jumpSound.isPlaying) {
+                            jumpSound.Play();
+                        }
+                    }
+                    else if (!walkingSound.isPlaying) {
                         walkingSound.Play();
                     }
                 }

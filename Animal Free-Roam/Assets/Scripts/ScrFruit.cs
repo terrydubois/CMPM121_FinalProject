@@ -41,6 +41,8 @@ namespace Suriyun {
                     ps.Play();
                     em.enabled = true;
 
+                    AudioSource eatSound = camObj.GetComponent<ScrCamera>().eatAudio;
+                    eatSound.Play();
                     Destroy(gameObject);
                 }
             }

@@ -59,28 +59,23 @@ namespace Suriyun {
             }
             transform.localScale = new Vector3(scale, scale, scale);
 
-            if (controller.isGrounded) {
-                // walk forward
-                if (walking) {
-                    animator.SetInteger("animation", 1);
-                    moveDir = new Vector3(0, 0, 1);
-                    moveDir.z = 1;
-                    moveDir.z *= moveSpeed;
-
-                    moveDir = transform.TransformDirection(moveDir);
-                }
-                
-                // rotate
-                if (rotatingDir != 0) {
-                    float runMultiply = 1;
-                    if (Input.GetKey(KeyCode.LeftShift)) {
-                        runMultiply = 1.5f;
-                    }
-                    else {
+            if (!sleeping) {
+                if (controller.isGrounded) {
+                    // walk forward
+                    if (walking) {
                         animator.SetInteger("animation", 1);
+                        moveDir = new Vector3(0, 0, 1);
+                        moveDir.z = 1;
+                        moveDir.z *= moveSpeed;
+
+                        moveDir = transform.TransformDirection(moveDir);
                     }
-                    rot += Input.GetAxis("Horizontal") * rotSpeed * runMultiply * Time.deltaTime;
-                    transform.eulerAngles = new Vector3(0, rot, 0);
+                    
+                    // rotate
+                    if (rotatingDir != 0) {
+                        rot += rotSpeed * Time.deltaTime;
+                        transform.eulerAngles = new Vector3(0, rot, 0);
+                    }
                 }
             }
 
@@ -93,7 +88,6 @@ namespace Suriyun {
             
 
             // return to standstill
-            
             if (!walking) {
                 animator.SetInteger("animation", 0);
                 moveDir.x = 0;

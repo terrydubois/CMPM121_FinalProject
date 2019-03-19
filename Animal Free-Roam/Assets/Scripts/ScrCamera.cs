@@ -38,6 +38,7 @@ namespace Suriyun {
         private GameObject[] fruitCount;
 
         public AudioSource[] tracks;
+        public AudioSource eatAudio;
 
         private float logoY;
         private float pressSpaceY;
@@ -137,11 +138,11 @@ namespace Suriyun {
             for (int i = 1; i < tracks.Length + 1; i++) {
 
                 if (score >= i * fruitPerSound) {
-                    if (tracks[i - 1].volume < 1.0f) {
+                    if (tracks[i - 1].volume < 0.4f) {
                         tracks[i - 1].volume += 0.02f;
                     }
                 }
-                tracks[i - 1].volume = Mathf.Clamp(tracks[i - 1].volume, 0.0f, 1.0f);
+                tracks[i - 1].volume = Mathf.Clamp(tracks[i - 1].volume, 0.0f, 0.4f);
             }
         }
 
