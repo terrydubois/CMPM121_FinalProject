@@ -22,14 +22,13 @@ namespace Suriyun {
         CharacterController controller;
         Animator animator;
 
-        private AudioSource walkingSound;
+        public AudioSource walkingSound;
+        public AudioSource walkingWaterSound;
 
         void Start()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
-
-            walkingSound = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -139,8 +138,15 @@ namespace Suriyun {
             }
 
             if (playWalkingSound) {
-                if (!walkingSound.isPlaying) {
-                    walkingSound.Play();
+                if (transform.position.y < 1.9f) {
+                    if (!walkingWaterSound.isPlaying) {
+                        walkingWaterSound.Play();
+                    }    
+                }
+                else {
+                    if (!walkingSound.isPlaying) {
+                        walkingSound.Play();
+                    }
                 }
             }
             else {
