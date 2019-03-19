@@ -22,6 +22,8 @@ namespace Suriyun {
         private float scale = 0;
         private float scaleDest = 6.0f;
 
+        private float sleepTimePlus;
+
         Vector3 moveDir = Vector3.zero;
 
         CharacterController controller;
@@ -41,6 +43,8 @@ namespace Suriyun {
             
             transform.localScale = Vector3.zero;
             transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
+
+            sleepTimePlus = Random.Range(-0.13f, 0.13f);
         }
 
         void Update()
@@ -113,8 +117,8 @@ namespace Suriyun {
 
             // sleeping
             float currentTime = timeObj.GetComponent<ScrTimeControl>().currentTime;
-            if (currentTime < 0.13f || currentTime > 0.93f) {
-                if (transform.position.y < 1.6) {
+            if (currentTime < 0.13f + sleepTimePlus || currentTime > 0.93f + sleepTimePlus) {
+                if (transform.position.y > 1.6f) {
                     walking = false;
                     animator.SetInteger("animation", 5);
                 }
