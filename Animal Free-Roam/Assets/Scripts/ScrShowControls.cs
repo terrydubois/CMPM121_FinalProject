@@ -13,8 +13,11 @@ namespace Suriyun {
         public float controlsYDest_hidden1;
         public float controlsYDest_hidden2;
         public float controlsYDest_show;
+        public float controlsX;
 
-        public bool show;
+        public KeyCode showButton;
+
+        private bool show;
 
         void Start()
         {
@@ -34,7 +37,7 @@ namespace Suriyun {
                 controlsYDest = controlsYDest_hidden1;
             }
             else {
-                if (Input.GetKeyDown(KeyCode.Z)) {
+                if (Input.GetKeyDown(showButton)) {
                     show = !show;
                 }
 
@@ -50,7 +53,7 @@ namespace Suriyun {
 
             RectTransform controlsTransform = GetComponent<RectTransform>();
             //Vector3 screenDim = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
-            controlsTransform.anchoredPosition = new Vector3(110, controlsY, 0);
+            controlsTransform.anchoredPosition = new Vector3(controlsX, controlsY, 0);
         }
 
         float approach(float value, float valueDest, float rate) {
