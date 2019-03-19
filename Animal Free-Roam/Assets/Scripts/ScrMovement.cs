@@ -31,16 +31,8 @@ namespace Suriyun {
 
         void Update()
         {
-            if (cameraObj.GetComponent<ScrCamera>().introScreen) {
-
-                //transform.localScale = Vector3.zero;
-                cameraObj.transform.localScale = Vector3.one;
-            }
-            else {
-
-                //transform.localScale = Vector3.one;
-                cameraObj.transform.localScale = Vector3.zero;
-
+            if (!cameraObj.GetComponent<ScrCamera>().introScreen) {
+                
                 if (Input.GetKeyDown(KeyCode.X)) {
                     autoRun = !autoRun;
                     if (!autoRun) {

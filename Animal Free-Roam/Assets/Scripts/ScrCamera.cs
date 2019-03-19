@@ -38,6 +38,13 @@ namespace Suriyun {
 
         public AudioSource[] tracks;
 
+        private float logoY;
+        private float pressSpaceY;
+        public GameObject logoObj;
+        public GameObject logoBackObj;
+        public GameObject pinwheelObj;
+        public GameObject pressSpaceObj;
+
 
         private void Start() {
             camTransform = transform;
@@ -49,6 +56,9 @@ namespace Suriyun {
             for (int i = 0; i < tracks.Length; i++) {
                 tracks[i].volume = 0;
             }
+
+            logoY = 1300;
+            pressSpaceY = -600;
         }
 
         private void Update() {
@@ -104,6 +114,7 @@ namespace Suriyun {
 
             setScoreText();
             soundControl();
+            showMenu();
         }
 
         private void LateUpdate() {
@@ -122,11 +133,45 @@ namespace Suriyun {
             int loopMax = Mathf.Clamp(score, 0, tracks.Length);
             for (int i = 0; i < loopMax; i++) {
                 if (tracks[i].volume < 1.0f) {
-                    tracks[i].volume += 0.05f;
+                    tracks[i].volume += 0.02f;
                 }
                 tracks[i].volume = Mathf.Clamp(tracks[i].volume, 0.0f, 1.0f);
             }
         }
 
+        void showMenu() {
+
+            float logoYDest = 1300;
+            float pressSpaceYDest = -600;
+            
+            if (introScreen) {
+                logoYDest = 0;
+                pressSpaceYDest = -150;
+            }
+
+            logoY = approach(logoY, logoYDest, 20);
+            pressSpaceY = approach(pressSpaceY, pressSpaceYDest, 20);
+
+            RectTransform logoTransform = logoObj.GetComponent<RectTransform>();
+            logoTransform.anchoredPosition = new Vector3(0, logoY + 20, 0);
+            RectTransform logoBackTransform = logoBackObj.GetComponent<RectTransform>();
+            logoBackTransform.anchoredPosition = new Vector3(0, logoY, 0);
+            RectTransform pinwheelTransform = pinwheelObj.GetComponent<RectTransform>();
+            pinwheelTransform.anchoredPosition = new Vector3(0, logoY, 0);
+
+            RectTransform pressSpaceTransform = pressSpaceObj.GetComponent<RectTransform>();
+            pressSpaceTransform.anchoredPosition = new Vector3(0, pressSpaceY, 0);
+        }
+
+        float approach(float value, float valueDest, float rate) {
+            
+            if (value < valueDest) {
+                value += Mathf.Abs(value - valueDest) / rate;
+            }
+            else if (value > valueDest) {
+                value -= Mathf.Abs(value - valueDest) / rate;
+            }
+            return value;
+        }
     }
 }
