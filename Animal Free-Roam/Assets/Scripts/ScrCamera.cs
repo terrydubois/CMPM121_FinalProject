@@ -45,6 +45,7 @@ namespace Suriyun {
         public GameObject logoBackObj;
         public GameObject pinwheelObj;
         public GameObject pressSpaceObj;
+        public GameObject textObj;
 
         public GameObject hungerBarBGObj;
         public GameObject hungerBarObj;
@@ -135,7 +136,10 @@ namespace Suriyun {
         }
 
         void setScoreText() {
-//            scoreText.text = "Fruit eaten: " + fruitCount.ToString();
+            scoreText.text = "Fruit eaten: " + score.ToString();
+
+            RectTransform textTransform = textObj.GetComponent<RectTransform>();
+            textTransform.anchoredPosition = new Vector3(0, hungerBarY, 0);
         }
 
         void soundControl() {
