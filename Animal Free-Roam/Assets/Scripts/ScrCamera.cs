@@ -36,6 +36,8 @@ namespace Suriyun {
         private GameObject[] NPCCount;
         private GameObject[] fruitCount;
 
+        public AudioSource[] tracks;
+
 
         private void Start() {
             camTransform = transform;
@@ -43,6 +45,10 @@ namespace Suriyun {
 
             score = 0;
             setScoreText();
+
+            for (int i = 0; i < tracks.Length; i++) {
+                tracks[i].volume = 0;
+            }
         }
 
         private void Update() {
@@ -91,11 +97,13 @@ namespace Suriyun {
             NPCCount = GameObject.FindGameObjectsWithTag("NPC");
             fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
 
-            debugStr += "NPCs: " + NPCCount.Length.ToString();
+            debugStr += "Score: " + score.ToString();
+            debugStr += " ...NPCs: " + NPCCount.Length.ToString();
             debugStr += " ...Fruits: " + fruitCount.Length.ToString();
             Debug.Log(debugStr);
 
             setScoreText();
+            soundControl();
         }
 
         private void LateUpdate() {
@@ -107,6 +115,17 @@ namespace Suriyun {
 
         void setScoreText() {
 //            scoreText.text = "Fruit eaten: " + fruitCount.ToString();
+        }
+
+        void soundControl() {
+
+            int loopMax = Mathf.Clamp(score, 0, tracks.Length);
+            for (int i = 0; i < loopMax; i++) {
+                if (tracks[i].volume < 1.0f) {
+                    tracks[i].volume += 0.05f;
+                }
+                tracks[i].volume = Mathf.Clamp(tracks[i].volume, 0.0f, 1.0f);
+            }
         }
 
     }

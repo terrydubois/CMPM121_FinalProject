@@ -6,7 +6,6 @@ public class ScrImageSpin : MonoBehaviour
 {
     public GameObject camObj;
     RectTransform myTransform;
-    float currentZ = 0;
     public float rotSpeed;
 
     // Start is called before the first frame update
