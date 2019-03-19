@@ -112,16 +112,6 @@ namespace Suriyun {
 
             distance = Mathf.Clamp(distance, minDist, maxDist);
 
-
-            string debugStr = "";
-            NPCCount = GameObject.FindGameObjectsWithTag("NPC");
-            fruitCount = GameObject.FindGameObjectsWithTag("Fruit");
-
-            debugStr += "Score: " + score.ToString();
-            debugStr += " ...NPCs: " + NPCCount.Length.ToString();
-            debugStr += " ...Fruits: " + fruitCount.Length.ToString();
-            Debug.Log(debugStr);
-
             setScoreText();
             soundControl();
             showMenu();

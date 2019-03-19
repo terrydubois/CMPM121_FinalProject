@@ -22,20 +22,25 @@ namespace Suriyun {
         CharacterController controller;
         Animator animator;
 
+        private AudioSource walkingSound;
+
         void Start()
         {
             controller = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
-            //animation = GetComponent<Animation>();
+
+            walkingSound = GetComponent<AudioSource>();
         }
 
         void Update()
         {
+            
             if (cameraObj.GetComponent<ScrCamera>().introScreen) {
                 autoRun = false;
                 moveDir.x = 0;
                 moveDir.z = 0;
                 animator.SetInteger("animation", 0);
+
             }
             else {
 
@@ -45,6 +50,7 @@ namespace Suriyun {
                         moveDir.x = 0;
                         moveDir.z = 0;
                         animator.SetInteger("animation", 0);
+
                     }
                 }
 
@@ -56,13 +62,14 @@ namespace Suriyun {
                         moveDir.z = 1;
                         moveDir.z *= moveSpeed;
                         
-                        // run if player is holding X
+                        // run if player is holding X or auto-run is enabled
                         if (Input.GetKey(KeyCode.LeftShift) || autoRun) {
                             moveDir *= 2;
                             animator.SetInteger("animation", 2);
                         }
 
                         moveDir = transform.TransformDirection(moveDir);
+
                     }
                     
                     // walk backwards
@@ -71,6 +78,7 @@ namespace Suriyun {
                         moveDir = new Vector3(0, 0, -0.5f);
                         moveDir *= moveSpeed;
                         moveDir = transform.TransformDirection(moveDir);
+
                     }
 
                     // rotate if pressing left/right
@@ -118,6 +126,29 @@ namespace Suriyun {
             
             moveDir.y -= gravity * Time.deltaTime;
             controller.Move(moveDir * Time.deltaTime);
+
+            bool playWalkingSound = false;
+            if (autoRun || Input.GetKey(KeyCode.W)
+            || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S)
+            || Input.GetKey(KeyCode.D)) {
+                if (!cameraObj.GetComponent<ScrCamera>().introScreen) {
+                    if (!Input.GetKey(KeyCode.Space)) {
+                        playWalkingSound = true;
+                    }
+                }
+            }
+
+            if (playWalkingSound) {
+                if (!walkingSound.isPlaying) {
+                    walkingSound.Play();
+                }
+            }
+            else {
+                if (walkingSound.isPlaying) {
+                    walkingSound.Stop();
+                }
+            }
         }
+
     }
 }
